@@ -55,8 +55,8 @@ public:
 		int col2 = col + dx;
 
 		double weight = 0.0;
-		weight += std::abs((*Image1)[row][image1Offset + col] - (*Image2)[row2][col2]);
-		weight += std::abs((*Image1)[row2][image1Offset + col2] - (*Image2)[row][col]);
+		weight += std::fabs((*Image1)[row][image1Offset + col] - (*Image2)[row2][col2]);
+		weight += std::fabs((*Image1)[row2][image1Offset + col2] - (*Image2)[row][col]);
 
 		return weight;
 	}
