@@ -96,14 +96,14 @@ void performStitching(const vector<vector<float> >& image1,
 			ptr[x] = image1[y][x];
 
 		// Copy over the margin between the images
-		for (int x = image1Offset; x < image1[0].size(); ++x)
+		for (unsigned int x = image1Offset; x < image1[0].size(); ++x)
 			if (grid.getLabel(y, x - image1Offset) == CutPlanar::LABEL_SOURCE)
 				ptr[x] = image1[y][x];
 			else
 				ptr[x] = image2[y][x - image1Offset];
 
 		// Copy over image 2
-		for (int x = 0; x < image2[0].size() - margin; ++x)
+		for (unsigned int x = 0; x < image2[0].size() - margin; ++x)
 			ptr[x + image1[0].size()] = image2[y][x + margin];
 	}
 }
