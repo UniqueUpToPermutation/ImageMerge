@@ -18,8 +18,8 @@ using namespace std;
 class EdgeCostSingleton
 {
 public:
-	static const vector<vector<float>>* Image1;
-	static const vector<vector<float>>* Image2;
+	static const vector<vector<float> >* Image1;
+	static const vector<vector<float> >* Image2;
 	static int Margin;
 	static double LargeNumber;
 
@@ -63,9 +63,9 @@ public:
 };
 
 // Stitch two images together using basic min-cut method
-void performStitching(const vector<vector<float>>& image1,
-	const vector<vector<float>>& image2, 
-	const int margin, vector<vector<float>>& output)
+void performStitching(const vector<vector<float> >& image1,
+	const vector<vector<float> >& image2, 
+	const int margin, vector<vector<float> >& output)
 {
 	int gridWidth = margin;
 	int gridHeight = image1.size();
@@ -110,7 +110,7 @@ void performStitching(const vector<vector<float>>& image1,
 
 // Convert an 8-bit image array to a matrix of floats
 void convertImageDataToFloatMatrix(const vector<unsigned char>& image, 
-	const int width, const int height, vector<vector<float>>& output)
+	const int width, const int height, vector<vector<float> >& output)
 {
 	for (int y = 0; y < height; ++y)
 	{
@@ -124,7 +124,7 @@ void convertImageDataToFloatMatrix(const vector<unsigned char>& image,
 }
 
 // Convert a matrix of float to an 8-bit image array
-void convertFloatMatrixToImageData(const vector<vector<float>>& matrix,
+void convertFloatMatrixToImageData(const vector<vector<float> >& matrix,
 	vector<unsigned char>& output)
 {
 	output.resize(4 * matrix[0].size() * matrix.size());
@@ -160,15 +160,15 @@ int main()
 	}
 
 	// Convert the image data to float matrices
-	vector<vector<float>> imageArray1;
-	vector<vector<float>> imageArray2;
+	vector<vector<float> > imageArray1;
+	vector<vector<float> > imageArray2;
 	convertImageDataToFloatMatrix(imageData1, imageWidth1, imageHeight1, imageArray1);
 	convertImageDataToFloatMatrix(imageData2, imageWidth2, imageHeight2, imageArray2);
 
 	cout << "Stitching images..." << endl;
 
 	// Stitch the images together
-	vector<vector<float>> output;
+	vector<vector<float> > output;
 	performStitching(imageArray1, imageArray2, STITCH_MARGIN, output);
 
 	cout << "Stitching complete!" << endl;
@@ -192,7 +192,7 @@ int main()
 	return 0;
 }
 
-const vector<vector<float>>* EdgeCostSingleton::Image1;
-const vector<vector<float>>* EdgeCostSingleton::Image2;
+const vector<vector<float> >* EdgeCostSingleton::Image1;
+const vector<vector<float> >* EdgeCostSingleton::Image2;
 int EdgeCostSingleton::Margin;
 double EdgeCostSingleton::LargeNumber;
